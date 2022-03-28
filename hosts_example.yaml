@@ -1,0 +1,16 @@
+all:
+  children:
+    masters:
+      hosts:
+        192.168.1.1: # this host (masters[0]) MUST be existed cluster master
+        
+    workers:
+      hosts:
+        192.168.1.2:
+      
+
+  vars:
+    ansible_user: <sudo user>
+    ansible_password: <sudo user's password>
+    ansible_become: yes
+    ansible_become_password: <sudo user's password>

@@ -1,0 +1,10 @@
+- name: Generate join command
+  command: "kubeadm token create --print-join-command"
+  delegate_to: "{{ groups.masters[0] }}"
+  register: join_command
+
+- name: Apply join commands in workers
+  command: "{{ join_command.stdout }}"
+
+- name: Wait for worker nodes to be ready
+  command: kubectl wait --for=condition=Ready nodes --all --timeout=600s
