@@ -8,3 +8,5 @@
 
 - name: Wait for worker nodes to be ready
   command: kubectl wait --for=condition=Ready nodes --all --timeout=600s
+  delegate_to: "{{ groups.masters[0] }}"
+  run_once: true
